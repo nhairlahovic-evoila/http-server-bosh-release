@@ -1,0 +1,13 @@
+---
+name: http-server
+
+templates:
+  bin/run: bin/run
+  bin/ctl: bin/ctl
+
+packages: []
+
+properties:
+  port:
+    description: "Port for HTTP server"
+    default: 8080

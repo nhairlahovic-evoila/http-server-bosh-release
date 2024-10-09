@@ -1,0 +1,20 @@
+#!/bin/bash
+
+LOG_DIR="/var/vcap/sys/log/http-server"
+RUN_DIR="/var/vcap/sys/run/http-server"
+RUN_SCRIPT="/var/vcap/jobs/http-server/bin/run"
+
+case $1 in
+  start)
+    echo "Starting HTTP server"
+    ./run > /var/vcap/sys/log/http-server/server.log 2>&1 &
+    ;;
+  stop)
+    echo "Stopping HTTP server"
+    kill $(pidof run)
+    ;;
+  *)
+    echo "Usage: ctl {start|stop}"
+    exit 1
+    ;;
+esac

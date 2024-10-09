@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PORT=${PORT:-<%= p("port") %>}
+
+echo "Starting HTTP server on port $PORT"
+
+python3 -m http.server $PORT
