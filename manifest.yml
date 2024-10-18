@@ -21,7 +21,7 @@ instance_groups:
   - name: http-server
     release: http-server
     properties:
-      port: 8081
+      port: 9090
 
 update:
   canaries: 1

@@ -1,5 +1,5 @@
-check process http_server
-  with pidfile /var/vcap/sys/run/http-server/pid
+check process http-server
+  with pidfile /var/vcap/sys/run/http-server/http-server.pid
   start program "/var/vcap/jobs/http-server/bin/ctl start"
   stop program "/var/vcap/jobs/http-server/bin/ctl stop"
   group vcap

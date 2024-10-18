@@ -1,0 +1,33 @@
+#!/bin/bash
+
+LOG_DIR="/var/vcap/sys/log/http-server"
+RUN_DIR="/var/vcap/sys/run/http-server"
+RUN_SCRIPT="/var/vcap/jobs/http-server/bin/run"
+LOG_DIR="/var/vcap/sys/log/http-server"
+PID_FILE="$RUN_DIR/http-server.pid"
+
+case $1 in
+  start)
+    echo "Starting HTTP server"
+
+    # Start the HTTP server and redirect stdout and stderr to log files
+    $RUN_SCRIPT \
+      1>>"$LOG_DIR/stdout.log" \
+      2>>"$LOG_DIR/stderr.log" &
+
+    # Save the PID of the HTTP server process to a PID file
+    echo $! > "$PID_FILE"
+    ;;
+  stop)
+    echo "Stopping HTTP server"
+
+    # Terminate the HTTP server using the PID from the PID file
+    kill -9 $(cat "$PID_FILE")
+    
+    # Remove the PID file
+    rm -f "$PID_FILE"
+    ;;
+  *)
+    # Display usage information for the script
+    echo "Usage: ctl {start|stop}";;
+esac

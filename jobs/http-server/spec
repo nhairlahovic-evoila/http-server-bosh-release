@@ -2,8 +2,8 @@
 name: http-server
 
 templates:
-  bin/run: bin/run
-  bin/ctl: bin/ctl
+  run: bin/run
+  ctl: bin/ctl
 
 packages: []
 
